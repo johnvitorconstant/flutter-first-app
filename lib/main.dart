@@ -17,7 +17,7 @@ class ExpensesApp extends StatelessWidget {
       theme: theme.copyWith(
           colorScheme: theme.colorScheme.copyWith(
             primary: Colors.purple,
-            secondary: Colors.purple,
+            secondary: Colors.amber,
           ),
           textTheme: theme.textTheme.copyWith(
             headline6: TextStyle(
@@ -43,9 +43,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _transactions = [
-    Transaction(id: 't1', title: 'Tenis', value: 310.76, date: DateTime.now()),
-    Transaction(id: 't2', title: 'Luz', value: 568.76, date: DateTime.now()),
+  final List<Transaction> _transactions = [
+  // Transaction(id: 't1', title: 'Tenis', value: 310.76, date: DateTime.now()),
+  // Transaction(id: 't2', title: 'Luz', value: 568.76, date: DateTime.now()),
   ];
 
   _addTransaction(String title, double value) {
@@ -53,7 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
         id: Random().nextDouble().toString(),
         title: title,
         value: value,
-        date: DateTime.now());
+        date: DateTime.now()
+    );
 
     setState(() {
       _transactions.add(newTransaction);
@@ -65,9 +66,10 @@ class _MyHomePageState extends State<MyHomePage> {
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
         context: context,
-        builder: (__) {
+        builder: (_) {
           return TransactionForm(_addTransaction);
-        });
+        },
+    );
   }
 
   @override
